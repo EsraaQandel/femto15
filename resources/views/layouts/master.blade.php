@@ -61,10 +61,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
          @can('isAdmin')
-        <li class="header">You are admin</li>
+        <li class="header">You are an admin</li>
          @endcan
          @can('isEmployee')
-        <li class="header">You are employee</li>
+        <li class="header">You are an employee</li>
          @endcan
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{route('home')}}"><i class="fa fa-link"></i> <span>Home</span></a></li>
@@ -206,14 +206,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       var email = button.data('myemail') 
       var phone = button.data('myphone') 
       var company_id = button.data('companyid') 
-      var nth_child = company_id-1;
+      // var nth_child = company_id-1;
       var employee_id = button.data('employeeid') 
       var modal = $(this)
       modal.find('.modal-body #name').val(name);
       modal.find('.modal-body #email').val(email);
       modal.find('.modal-body #phone').val(phone);
       modal.find('.modal-body #my_company_id').children().removeAttr("selected");
-      modal.find('.modal-body #my_company_id option:nth-child('+nth_child+')').attr("selected","selected");
+      modal.find('.modal-body #my_company_id option#'+company_id).attr("selected","selected");
       modal.find('.modal-body #employee_id').val(employee_id);
       console.log(company_id);
 })

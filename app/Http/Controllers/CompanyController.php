@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
+use Gate;
 
 class CompanyController extends Controller
 {
@@ -26,7 +27,7 @@ class CompanyController extends Controller
       $output = '';
       $query = $request->get('query');
       if($query != '')
-      {
+      { 
         
        $data = Company::where('name', 'like', '%'.$query.'%')
          ->orWhere('tel', 'like', '%'.$query.'%')
@@ -47,21 +48,32 @@ class CompanyController extends Controller
       {
        foreach($data as $row)
        {
+
+        if(Gate::allows('isAdmin')){
         $output .= '
         <tr>
          <td>'.$row->name.'</td>
          <td>'.$row->tel.'</td>
          <td>'.$row->address.'</td>
          <td>'.$row->email.'</td>
-        @can(\'isAdmin\')
+    
         <td>
         <button class="btn btn-info" data-myname="'.$row->name.'" data-mytel="'.$row->tel.'" data-companyid="'.$row->id.'" data-myemail="'.$row->email.'"  data-myaddress="'.$row->address.'" data-toggle="modal" data-target="#edit">Edit</button>/
             <button class="btn btn-danger" data-companyid="'.$row->id.'"" data-toggle="modal" data-target="#delete">Delete</button>
         </td>
-        @endcan
+
+        </tr>';
+       }else{
+        $output .= '
+        <tr>
+         <td>'.$row->name.'</td>
+         <td>'.$row->tel.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->email.'</td>
         </tr>';
        }
       }
+    }
       else
       {
        $output = '

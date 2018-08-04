@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Company;
+use Gate;
 
 class EmployeeController extends Controller
 {
@@ -42,24 +43,34 @@ class EmployeeController extends Controller
       if($total_row > 0)
       {
        foreach($data as $row)
-       {
+       { 
+
+        if(Gate::allows('isAdmin')){
         $output .= '
         <tr>
          <td>'.$row->name.'</td>
          <td>'.$row->phone.'</td>
          <td>'.$row->email.'</td>
          <td>'.$row->companies->name.'</td>
-         @can(\'isAdmin\')
          <td>
            <button class="btn btn-info" data-myname="'.$row->name.'" data-myphone="'.$row->phone.'" data-employeeid="'.$row->id.'" data-myemail="'.$row->email.'"  data-companyid="'.$row->company_id.'" data-toggle="modal" data-target="#edit-employee">Edit</button>
                                     /
             <button class="btn btn-danger" data-employeeid="'.$row->id.'" data-toggle="modal" data-target="#delete-employee">Delete</button>
                                 </td>
-         @endcan
+        
         </tr>
+        ';
+       }else{
+        $output .= '
+        <tr>
+         <td>'.$row->name.'</td>
+         <td>'.$row->phone.'</td>
+         <td>'.$row->email.'</td>
+         <td>'.$row->companies->name.'</td>
         ';
        }
       }
+    }
       else
       {
        $output = '
@@ -84,8 +95,7 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-       
+    {  
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],

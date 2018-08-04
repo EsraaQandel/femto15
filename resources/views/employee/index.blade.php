@@ -122,7 +122,7 @@
                           <div class="col-md-6">
                               <select class="form-control col-md-6" id="my_company_id" name="company_id">
                               @foreach($companies as $company)
-                                <option  value="{{$company->id}}">{{$company->name}}</option>
+                                <option  id="{{$company->id}}"  value="{{$company->id}}">{{$company->name}}</option>
                               @endforeach
                               </select>
                             </div>
