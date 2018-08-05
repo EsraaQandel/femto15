@@ -30,6 +30,7 @@ class HomeController extends Controller
     }
         public function admin()
     {
+        //page or a dashboard that only admins can access
         if(!Gate::allows('isAdmin')){
             abort(404,"Sorry, You can't do this actions");
         }
