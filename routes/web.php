@@ -23,3 +23,8 @@ Route::get('/company/action', 'CompanyController@action')->name('company.action'
 Route::resource('company','CompanyController');
 Route::get('/employee/action', 'EmployeeController@action')->name('employee.action');
 Route::resource('employee','EmployeeController');
+Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+
+Route::get('Activated', 'Auth\RegisterController@sendEmailDone')->name('Activated');
+
+Route::get('verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');

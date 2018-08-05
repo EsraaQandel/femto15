@@ -17,6 +17,7 @@ class CompaniesTableSeeder extends Seeder
     	$company->tel = '01124580225';
     	$company->address = 'online system';
     	$company->email = 'online system';
+        $company->domain = 'gmail.com';
     	$company->save();
         factory(App\Company::class, 5)->create();
     }

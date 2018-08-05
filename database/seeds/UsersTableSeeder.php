@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         $user->company_id = 1;
         $user->phone = "01124208383";
         $user->remember_token = 'horbusloqp';
+        $user->status = 1;
         $user->save();
         factory(App\User::class, 25)->create();
     }

@@ -22,6 +22,7 @@ $factory->define(App\Company::class, function (Faker $faker) {
         'tel' => $faker->tollFreePhoneNumber,
         'address' => $faker->streetAddress,
         'email' => $faker->email,
+        'domain' => $faker->domainName,
      ];
 });
 
@@ -34,6 +35,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => bcrypt('secret') ,
         'company_id' => $faker->numberBetween($min = 2, $max = 5),
         'email' => $faker->email,
+        'status' => 1,
         'remember_token' => str_random(10),
      ];
 });
