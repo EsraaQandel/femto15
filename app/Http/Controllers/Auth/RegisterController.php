@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
 use App\Mail\verifyEmail;
+use App\Mail\successfulRegister;
 use App\Rules\ValidDomain;
 
 class RegisterController extends Controller
@@ -94,6 +95,7 @@ class RegisterController extends Controller
         if($user){
 
         User::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
+         Mail::to($email)->send(new successfulRegister($user));
         return view('email.Activated');
         }else{
 
