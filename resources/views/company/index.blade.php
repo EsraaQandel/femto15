@@ -11,6 +11,9 @@
 </button>
 	@endcan
 
+        @foreach ($errors->all() as $error)
+            <span style="color:red">{{ $error }}</span>
+        @endforeach
 	  <div class="form-group">
       <input type="text" name="search" id="search-company" class="form-control" placeholder="Search Companies Data" />
      </div>

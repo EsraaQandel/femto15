@@ -99,7 +99,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {   
+        $this->validate($request,array(
+            'name' => 'required|string|max:255',
+            'tel' => 'required|max:25',
+            'email' => 'required|string|email|max:255|unique:companies',
+            'address' => 'required|string',
+            'domain' => 'required|string',
 
+        ));
         Company::create($request->all());
         return back();  
     }

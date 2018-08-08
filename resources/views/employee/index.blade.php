@@ -10,6 +10,9 @@
  	Add New
 </button>
 @endcan
+@foreach ($errors->all() as $error)
+      <span style="color:red">{{ $error }}</span>
+@endforeach
     <div class="form-group">
       <input type="text" name="search" id="search-employee" class="form-control" placeholder="Search Employees Data" />
      </div>

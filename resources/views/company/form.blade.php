@@ -18,6 +18,12 @@
 					<input required="required" type="text" class="form-control" name="address" id="address"> 
 				</div>
 	        	</div>
+	        	<div class="overflow form-group">
+	        		<label for="domain" class="col-md-4 control-label">Domain</label>
+	        		<div class="col-md-6">
+					<input required="required" type="text" class="form-control" name="domain" id="domain"> 
+				</div>
+	        	</div>
 
 	        	<div class="overflow form-group">
 	        		<label for="email" class="col-md-4 control-label">Email</label>

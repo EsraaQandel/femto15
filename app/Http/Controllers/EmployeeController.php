@@ -95,7 +95,12 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {   
+
+        $this->validate($request,array(
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users'
+  ));
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],
