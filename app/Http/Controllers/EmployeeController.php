@@ -98,7 +98,8 @@ class EmployeeController extends Controller
 
         $this->validate($request,array(
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users'
+            'email' => 'required|string|email|max:255|unique:users',
+            'company_id' => 'exists:companies,id',
   ));
         User::create([
             'name' => $request['name'],
