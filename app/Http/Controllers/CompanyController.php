@@ -49,27 +49,25 @@ class CompanyController extends Controller
        foreach($data as $row)
        {
 
-        if(Gate::allows('isAdmin')){
+        
         $output .= '
         <tr>
          <td>'.$row->name.'</td>
          <td>'.$row->tel.'</td>
          <td>'.$row->address.'</td>
-         <td>'.$row->email.'</td>
-    
-        <td>
-        <button class="btn btn-info" data-myname="'.$row->name.'" data-mytel="'.$row->tel.'" data-companyid="'.$row->id.'" data-myemail="'.$row->email.'"  data-myaddress="'.$row->address.'" data-toggle="modal" data-target="#edit">Edit</button>/
-            <button class="btn btn-danger" data-companyid="'.$row->id.'"" data-toggle="modal" data-target="#delete">Delete</button>
-        </td>
+         <td>'.$row->email.'</td>' ;
+
+        if(Gate::allows('isAdmin')){
+
+        $output = $output. '
+          <td>
+          <button class="btn btn-info" data-myname="'.$row->name.'" data-mytel="'.$row->tel.'" data-companyid="'.$row->id.'" data-myemail="'.$row->email.'"  data-myaddress="'.$row->address.'" data-toggle="modal" data-target="#edit">Edit</button>/
+              <button class="btn btn-danger" data-companyid="'.$row->id.'"" data-toggle="modal" data-target="#delete">Delete</button>
+          </td>
 
         </tr>';
        }else{
-        $output .= '
-        <tr>
-         <td>'.$row->name.'</td>
-         <td>'.$row->tel.'</td>
-         <td>'.$row->address.'</td>
-         <td>'.$row->email.'</td>
+        $output = $output. '
         </tr>';
        }
       }

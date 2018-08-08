@@ -45,13 +45,16 @@ class EmployeeController extends Controller
        foreach($data as $row)
        { 
 
-        if(Gate::allows('isAdmin')){
+       
         $output .= '
         <tr>
          <td>'.$row->name.'</td>
          <td>'.$row->phone.'</td>
          <td>'.$row->email.'</td>
-         <td>'.$row->companies->name.'</td>
+         <td>'.$row->companies->name.'</td>';
+
+          if(Gate::allows('isAdmin')){
+            $output = $output . '
          <td>
            <button class="btn btn-info" data-myname="'.$row->name.'" data-myphone="'.$row->phone.'" data-employeeid="'.$row->id.'" data-myemail="'.$row->email.'"  data-companyid="'.$row->company_id.'" data-toggle="modal" data-target="#edit-employee">Edit</button>
                                     /
@@ -61,12 +64,8 @@ class EmployeeController extends Controller
         </tr>
         ';
        }else{
-        $output .= '
-        <tr>
-         <td>'.$row->name.'</td>
-         <td>'.$row->phone.'</td>
-         <td>'.$row->email.'</td>
-         <td>'.$row->companies->name.'</td>
+       $output = $output . '
+         </tr>
         ';
        }
       }

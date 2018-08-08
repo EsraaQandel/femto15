@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $('#company-tbody').html(data.table_data);
     $('#company_total_records').text(data.total_data);
    },error:function(){ 
-            alert("error!!!!");
+            console("error!!!!");
         }
   })
  }
@@ -165,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $('#employee-tbody').html(data.table_data);
     $('#employee_total_records').text(data.total_data);
    },error:function(){ 
-            alert("error!!!!");
+            console("error!!!!");
         }
   })
  }
